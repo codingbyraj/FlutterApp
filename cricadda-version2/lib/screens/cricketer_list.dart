@@ -16,29 +16,20 @@ class CricketerList extends StatelessWidget {
             vertical: 10.0,
           ),
           leading: Container(
-            margin: EdgeInsets.only(right: 10.0),
+            margin: EdgeInsets.only(right: 5.0),
             child: CircleAvatar(
               backgroundImage: AssetImage("./assets/" + currentPlayer.imagePath),
               backgroundColor: Colors.white,
               radius: 40.0,
             ),
-            padding: EdgeInsets.all(10.0),
-            // decoration: BoxDecoration(
-            //   border: Border.all(
-            //     color: Colors.white,
-            //     width: 2.5,
-            //   ),
-            //   color: Color.fromRGBO(0, 0, 0, 0.2),
-            //   borderRadius: BorderRadius.circular(50.0),
-            // ),
+            padding: EdgeInsets.all(10.0),            
           ),
           title: Text(
-            currentPlayer.name,
-            // textAlign: TextAlign.center,
+            currentPlayer.name,            
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
-              fontSize: 22,
+              fontSize: 20,
             ),
           ),
           subtitle: Text(

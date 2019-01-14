@@ -135,6 +135,7 @@ class DetailsPage extends StatelessWidget {
             padding: EdgeInsets.only(top: 15.0),
             child: Text(
               player.fullName,
+              textAlign: TextAlign.center,
               style: TextStyle(
                 color: Color.fromRGBO(64, 100, 96, .9),
                 fontSize: 30.0,
@@ -147,7 +148,7 @@ class DetailsPage extends StatelessWidget {
             margin: EdgeInsets.only(top: 15.0),
             child: Center(
               child: Text(
-                "Batting Style: ${player.style}",
+                "Style: ${player.style}",
                 style: TextStyle(
                   color: Color.fromRGBO(1, 12, 1, 0.5),
                   fontSize: 20.0,

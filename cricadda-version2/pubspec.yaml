@@ -52,6 +52,12 @@ flutter:
    - assets/bat.png
    - assets/ball.png
    - assets/yuvi.png
+   - assets/bhajji.jpg
+   - assets/bhuvi.jpg
+   - assets/nehra.jpg
+   - assets/bumrah.jpg
+   - assets/umesh.jpg
+   
   
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

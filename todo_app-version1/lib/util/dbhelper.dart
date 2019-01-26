@@ -13,9 +13,11 @@ class DBHelper {
   String colDescription = "description";
   String colDate = "date";
   String colPriority = "priority";
+  String colSorting = "date";
+  String colOrder = "";
 
   DBHelper._internal();
-  
+
   factory DBHelper() {
     return _dbHelper;
   }
@@ -30,7 +32,8 @@ class DBHelper {
   }
 
   Future<Database> initializeDB() async {
-    Directory dir = await getApplicationDocumentsDirectory(); // the function is in path_provider package. it returns the path of current folder. Although, path is different in IOS and Android but It will work in both case.
+    Directory dir =
+        await getApplicationDocumentsDirectory(); // the function is in path_provider package. it returns the path of current folder. Although, path is different in IOS and Android but It will work in both case.
     String path = dir.path + "todos.db";
     var dbTodos = await openDatabase(path, version: 1, onCreate: _createDb);
     return dbTodos;
@@ -47,18 +50,24 @@ class DBHelper {
     return result;
   }
 
-  Future<int> getCount() async{
+  Future<int> getCount() async {
     Database db = await this.db;
     var result = Sqflite.firstIntValue(
-      await db.rawQuery("SELECT COUNT(*) FROM $tblTodo")
-    );
+        await db.rawQuery("SELECT COUNT(*) FROM $tblTodo"));
     return result;
   }
 
-  Future<List> getTodos() async {
+  Future<List> getTodos([String col, String order]) async {
     Database db = await this.db;
-    var result =
-        await db.rawQuery("SELECT * FROM $tblTodo ORDER BY $colPriority ASC");
+    if (col != null) {
+      colSorting = col;
+    }
+    if (order != null) {
+      colOrder = order;
+    }
+
+    var result = await db
+        .rawQuery("SELECT * FROM $tblTodo ORDER BY $colSorting $colOrder");
     return result;
   }
 
@@ -71,7 +80,6 @@ class DBHelper {
 
   Future<int> deleteTodo(int id) async {
     Database db = await this.db;
-    // var result = await db.rawDelete("DELETE FROM $tblTodo WEHRE $colId = $id");
     var result = await db.delete(tblTodo, where: "$colId = ?", whereArgs: [id]);
     return result;
   }

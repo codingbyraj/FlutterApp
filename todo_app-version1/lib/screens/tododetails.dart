@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 import 'package:todo_app/model/todo.dart';
 import 'package:todo_app/util/dbhelper.dart';
 
-
 DBHelper db = DBHelper();
 final List<String> choices = const <String>[
   'Save Todo & Back',
@@ -29,7 +28,7 @@ class _TodoDetails extends State<TodoDetails> {
   Todo todo;
   final _priorities = ["High", "Medium", "Low"];
   String _priority = "High";
-  
+
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   _TodoDetails(this.todo);
@@ -84,6 +83,8 @@ class _TodoDetails extends State<TodoDetails> {
                       bottom: 15.0,
                     ),
                     child: TextField(
+                      maxLines: null,
+                      keyboardType: TextInputType.multiline,
                       controller: descriptionController,
                       style: textStyle,
                       onChanged: (value) => updateDescription(),
@@ -110,7 +111,6 @@ class _TodoDetails extends State<TodoDetails> {
                   )
                 ],
               ),
-              
             ],
           )),
     );
@@ -133,9 +133,10 @@ class _TodoDetails extends State<TodoDetails> {
           );
           showDialog(
             context: context,
-            builder: (_) => alertDelete,
+            builder: (_) => alertDelete, // need to understand it
           );
         }
+
         break;
       case menuBack:
         Navigator.pop(context, true);
@@ -143,9 +144,9 @@ class _TodoDetails extends State<TodoDetails> {
     }
   }
 
-  void save() {         
+  void save() {
     todo.date = DateFormat.yMd().add_jm().format(new DateTime.now());
-    print (todo.date);
+    print(todo.date);
     if (todo.id == null && todo.title != "") {
       db.insertTodo(todo);
     } else {

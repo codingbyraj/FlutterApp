@@ -58,10 +58,10 @@ class _TodoList extends State<TodoList> {
     );
   }
 
-  void getTodosData() {    
+  void getTodosData([String col, String order]) {    
     final dbFuture = db.initializeDB();
     dbFuture.then((result) {
-      final todosFuture = db.getTodos();
+      final todosFuture = db.getTodos(col, order);
       todosFuture.then((result) {
         List<Todo> todoList = List<Todo>();
         _count = result.length;
@@ -117,13 +117,13 @@ class _TodoList extends State<TodoList> {
   }
 
   void navigateToDetails(Todo todo) async {
-    bool result = await Navigator.push(
+    dynamic result = await Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => TodoDetails(todo),
       ),
     );
-    if (result) {
+    if (result == true) {
       // if user comes back to the todolist page then update the list from database
       getTodosData();
     }
@@ -133,9 +133,11 @@ class _TodoList extends State<TodoList> {
     switch (sortMenuItem) {
       case sortPriority:
         print(sortPriority);
+        getTodosData('priority', 'ASC');
         break;
       case sortDate:
         print(sortDate);
+        getTodosData('date','DESC');
         break;
     }
   }

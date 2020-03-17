@@ -1,0 +1,26 @@
+Next Target in Flutter:-
+
+* publish your app on google play store
+* game development
+----------------------------------------------------------
+
+
+Ques:- How to publish my flutter app on google play store?
+
+Ans:- 
+
+Steps:
+1. got to AndroidManifest.xml
+	and comment following line (because my app is not using internet)
+		<!-- <uses-permission android:name="android.permission.INTERNET"/> -->
+
+2. build.gradle
+	applicationId: Specify the final, unique (Application Id)appid
+
+3. add launcher icon
+
+
+https://medium.com/dextra-digital/creating-the-t-rex-game-with-flutter-and-flame-6d01add1ad5b
+
+https://blog.geekyants.com/building-a-2d-game-in-flutter-a-comprehensive-guide-913f647846bc
+
